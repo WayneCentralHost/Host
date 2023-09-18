@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date and Time Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: background-image 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure the page takes at least the full viewport height */
+        }
+        #datetime {
+            font-size: 120px;
+            font-weight: bold; /* Make the text bolder */
+            color: #fff;
+            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5); /* Outline with shadow */
+        }
+        #weekday {
+            font-size: 80px;
+            margin-bottom: 10px;
+            font-weight: bold; /* Make the text bolder */
+            color: #fff;
+            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5); /* Outline with shadow */
+        }
+        #time {
+            font-size: 100px; /* Font size for the time */
+            font-weight: bold; /* Make the text bolder */
+            color: #fff;
+            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5); /* Outline with shadow */
+        }
+        h2 {
+            font-size: 80px;
+            font-weight: bold; /* Make the text bolder */
+            color: #fff;
+            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5); /* Outline with shadow */
+        }
+    </style>
+</head>
+<body>
+    <h2 id="weekday"></h2>
+    <div id="datetime"></div>
+    <div id="time"></div> <!-- Separate div for the time -->
+    <script>
+        const backgroundImages = [
+            'image1.jpg',
+            'image2.jpg',
+            'image3.jpg',
+            // Add more image filenames here
+        ];
+
+        // Function to set a random background image
+        function setRandomBackground() {
+            const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+            const imagePath = 'http://wcms/Infostream/images/' + backgroundImages[randomIndex]; // Updated image path
+            document.body.style.backgroundImage = `url(${imagePath})`;
+        }
+
+        function updateDateTime() {
+            const weekdayElement = document.getElementById('weekday');
+            const dateTimeElement = document.getElementById('datetime');
+            const timeElement = document.getElementById('time'); // Get the time element
+            const now = new Date();
+            const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            const weekdayOptions = { weekday: 'long' };
+
+            const dateStr = now.toLocaleDateString(undefined, dateOptions);
+            const timeStr = now.toLocaleTimeString(undefined, timeOptions);
+            const weekdayStr = now.toLocaleDateString(undefined, weekdayOptions);
+
+            weekdayElement.textContent = `Today is ${weekdayStr}`;
+            dateTimeElement.textContent = `${dateStr}`;
+            timeElement.textContent = `${timeStr}`; // Set the time separately
+        }
+
+        // Update the date and time every second
+        setInterval(updateDateTime, 1000);
+
+        // Set a random background image when the page loads
+        setRandomBackground();
+    </script>
+</body>
+</html>
