@@ -54,15 +54,13 @@
     <script>
         const backgroundImages = [
             'image1.jpg',
-            'image2.jpg',
-            'image3.jpg',
             // Add more image filenames here
         ];
 
         // Function to set a random background image
         function setRandomBackground() {
             const randomIndex = Math.floor(Math.random() * backgroundImages.length);
-            const imagePath = 'http://wcms/Infostream/images/' + backgroundImages[randomIndex]; // Updated image path
+            const imagePath = 'https://waynecentralhost.github.io/Host/' + backgroundImages[randomIndex]; // Updated image path
             document.body.style.backgroundImage = `url(${imagePath})`;
         }
 
